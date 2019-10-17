@@ -44,7 +44,7 @@ class SignUpForm extends React.Component {
 
             localStorage.setItem('token', data.signUp.token);
 
-            await this.props.refetch;
+            await this.props.refetch();
 
             this.props.history.push(routes.HOME);
         });

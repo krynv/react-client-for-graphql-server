@@ -1,47 +1,17 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 
-import ErrorMessage from '../Error';
+import withSession from '../Session/withSession';
 
-const GET_USERS_WITH_MESSAGES = gql`
-{
-    users {
-        id
-        username
-        email
-        messages {
-            id
-            text
-            createdAt
-        }
-    }
-}
-`;
+import { MessageCreate, Messages } from '../Message';
 
-const Home = () => (
-    <Query query={GET_USERS_WITH_MESSAGES}>
-        {({ loading, error, data }) => {
+const Home = ({ session }) => (
+    <div>
+        <h2>Landing Page</h2>
 
-            if (loading) return "Loading...";
-            if (error) return <ErrorMessage error={error} />;
-
-            return (
-                <div>
-                    {data.users.map(user => (
-                        <div key={user.id}>
-                            <h2>{user.username}</h2>
-                            <div>
-                                {user.messages.map(message => (
-                                    <div key={message.id}>{message.text}</div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            );
-        }}
-    </Query>
+        {session && session.me && <MessageCreate />}
+        
+        <Messages me={session.me} limit={2} />
+    </div>
 );
 
-export default Home;
+export default withSession(Home);

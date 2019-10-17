@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -29,7 +29,7 @@ const INITIAL_STATE = {
     password: '',
 };
 
-class SignInForm extends Component {
+class SignInForm extends React.Component {
     state = { ...INITIAL_STATE };
 
     onChange = event => {
@@ -44,7 +44,7 @@ class SignInForm extends Component {
 
             localStorage.setItem('token', data.signIn.token);
 
-            await this.props.refetch;
+            await this.props.refetch();
 
             this.props.history.push(routes.HOME);
         });
