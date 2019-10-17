@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-const httpLink = new HttpLink({
-    uri: 'http://graphql.flix.industries/graphql', // http://localhost:8000/graphql
-});
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+import './index.css';
+
+import App from './components/App';
+
+import * as serviceWorker from './serviceWorker';
 
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-    link: httpLink,
+    uri: 'http://graphql.flix.industries/graphql', // http://localhost:8000/graphql
     cache,
+    onError: ({ networkError, graphQLErrors }) => {
+        console.log('graphQLErrors', graphQLErrors)
+        console.log('networkError', networkError)
+    }
 });
 
 ReactDOM.render(
