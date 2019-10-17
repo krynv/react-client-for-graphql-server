@@ -17,7 +17,7 @@ const SIGN_IN = gql`
 
 const SignInPage = ({ history, refetch }) => (
     <div>
-        <h1>SignIn</h1>
+        <h1>Sign In</h1>
 
         <SignInForm history={history} refetch={refetch} />
         <SignUpLink />
@@ -34,6 +34,7 @@ class SignInForm extends Component {
 
     onChange = event => {
         const { name, value } = event.target;
+
         this.setState({ [name]: value });
     };
 

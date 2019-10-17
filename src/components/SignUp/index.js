@@ -53,6 +53,7 @@ class SignUpForm extends React.Component {
     };
 
     render() {
+
         const {
             username,
             email,
