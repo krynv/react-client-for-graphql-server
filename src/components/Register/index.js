@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import * as routes from '../../constants/routes';
 import ErrorMessage from '../Error';
 
-const SIGN_UP = gql`
+const REGISTER = gql`
     mutation($username: String!, $email: String!, $password: String!) {
         signUp(username: $username, email: $email, password: $password) {
             token
@@ -21,15 +21,15 @@ const INITIAL_STATE = {
     confirmPassword: '',
 };
 
-const SignUpPage = ({ history, refetch }) => (
+const RegisterPage = ({ history, refetch }) => (
     <div>
-        <h1>Sign Up</h1>
+        <h1>Register</h1>
 
-        <SignUpForm history={history} refetch={refetch} />
+        <RegisterForm history={history} refetch={refetch} />
     </div>
 );
 
-class SignUpForm extends React.Component {
+class RegisterForm extends React.Component {
     state = { ...INITIAL_STATE };
 
     onChange = event => {
@@ -38,11 +38,11 @@ class SignUpForm extends React.Component {
         this.setState({ [name]: value });
     };
 
-    onSubmit = (event, signUp) => {
-        signUp().then(async ({ data }) => {
+    onSubmit = (event, register) => {
+        register().then(async ({ data }) => {
             this.setState({ ...INITIAL_STATE });
 
-            localStorage.setItem('token', data.signUp.token);
+            localStorage.setItem('token', data.register.token);
 
             await this.props.refetch();
 
@@ -68,10 +68,10 @@ class SignUpForm extends React.Component {
             username === ''; // check if we have a valid form on submission
 
         return (
-            <Mutation mutation={SIGN_UP} variables={{ username, email, password }}>
-                {(signUp, { loading, error, data }) => (
+            <Mutation mutation={REGISTER} variables={{ username, email, password }}>
+                {(register, { loading, error, data }) => (
 
-                    <form onSubmit={event => this.onSubmit(event, signUp)}>
+                    <form onSubmit={event => this.onSubmit(event, register)}>
 
                         <input
                             name="username"
@@ -106,7 +106,7 @@ class SignUpForm extends React.Component {
                         />
 
                         <button disabled={isInvalid || loading} type="submit"> {/*Disable the form if we the form is invalid OR if it's loading*/}
-                            Sign Up
+                            Go!
                         </button>
 
                         {error && <ErrorMessage error={error} />} {/*Show an error if we have an error*/}
@@ -117,8 +117,8 @@ class SignUpForm extends React.Component {
     }
 }
 
-const SignUpLink = () => <p>Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link></p>;
+const RegisterLink = () => <p>Don't have an account? <Link to={routes.REGISTER}>Register here!</Link></p>;
 
-export default withRouter(SignUpPage);
+export default withRouter(RegisterPage);
 
-export { SignUpForm, SignUpLink };
+export { RegisterForm, RegisterLink };

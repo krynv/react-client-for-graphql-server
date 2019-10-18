@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { SignUpLink } from '../SignUp';
+import { RegisterLink } from '../Register';
 import * as routes from '../../constants/routes';
 import ErrorMessage from '../Error';
 
@@ -20,7 +20,7 @@ const SignInPage = ({ history, refetch }) => (
         <h1>Sign In</h1>
 
         <SignInForm history={history} refetch={refetch} />
-        <SignUpLink />
+        <RegisterLink />
     </div>
 );
 

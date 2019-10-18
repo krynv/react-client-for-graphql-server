@@ -54,8 +54,9 @@ class MessageCreate extends React.Component {
                             value={text}
                             onChange={this.onChange}
                             type="text"
-                            placeholder="Your message ..."
+                            placeholder="Type your message here"
                         />
+
                         <button type="submit">Send</button>
 
                         {error && <ErrorMessage error={error} />}
