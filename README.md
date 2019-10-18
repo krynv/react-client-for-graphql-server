@@ -24,7 +24,7 @@ Install dependencies:
 
     npm i
 
-Start server: 
+Start the application: 
 
 > **NOTE**: Make sure your [GraphQL server](https://github.com/krynv/feature-rich-graphql-express-server) is running before you start the application.
 
