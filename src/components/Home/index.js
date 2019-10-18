@@ -10,7 +10,7 @@ const Home = ({ session }) => (
 
         {session && session.me && <MessageCreate />}
         
-        <Messages me={session.me} limit={2} />
+        <Messages limit={2} />
     </div>
 );
 
