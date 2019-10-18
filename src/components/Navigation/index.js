@@ -18,15 +18,13 @@ const NavigationAuth = ({ session }) => (
             <Link to={routes.HOME}>Home</Link>
         </li>
         <li>
-            <Link to={routes.ACCOUNT}>Account ({session.me.username})</Link>
+            <Link to={routes.ACCOUNT}>{session.me.username}</Link>
         </li>
-        {session &&
-            session.me &&
-            session.me.role === 'ADMIN' && (
-                <li>
-                    <Link to={routes.ADMIN}>Admin</Link>
-                </li>
-            )}
+        {session && session.me && session.me.role === 'ADMIN' && (
+            <li>
+                <Link to={routes.ADMIN}>Admin</Link>
+            </li>
+        )}
         <li>
             <SignOutButton />
         </li>
@@ -38,8 +36,13 @@ const NavigationNonAuth = () => (
         <li>
             <Link to={routes.SIGN_IN}>Sign In</Link>
         </li>
+
         <li>
             <Link to={routes.HOME}>Home</Link>
+        </li>
+
+        <li>
+            <Link to={routes.REGISTER}>Register</Link>
         </li>
     </ul>
 );
