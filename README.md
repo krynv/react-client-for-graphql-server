@@ -16,7 +16,7 @@ An Apollo React Client for the [Feature Rich GraphQL Express Server](https://git
 You must have the configured [server](https://github.com/krynv/feature-rich-graphql-express-server) running in order to use this application. 
 By default, this project comes with a link to the GraphQL server running over at: http://graphql.flix.industries/graphql.
 
-Please see the [Feature Ruch GraphQL Express Server repository](https://github.com/krynv/feature-rich-graphql-express-server) to set up the back end.
+Please see the [Feature Rich GraphQL Express Server repository](https://github.com/krynv/feature-rich-graphql-express-server) to set up the back end.
 
 ## Run the application
 
